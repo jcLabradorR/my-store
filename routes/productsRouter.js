@@ -14,26 +14,28 @@ router.get('/', (req, res) => {
       image: faker.image.imageUrl(),
     });
   }
-  res.json(products);
-});
-
-router.get('/filter', (req, res) => {
-  res.send('yo soy un filter');
+  res.status(200).json(products);
 });
 
 router.get('/:id', (req, res) => {
   const { id } = req.params;
-  res.json({
+  if (id === '999') {
+    res.status(404).json({
+      message: 'Not found'
+    });
+  }else{
+    res.status(200).json({
       id,
       name: 'iPhone X3',
       price: 32000,
-  });
+    });
+  }
 });
 
 //POST
 router.post('/', (req, res) => {
   const body = req.body;
-  res.json({
+  res.status(201).json({
     message: 'created',
     data: body,
   });
@@ -43,7 +45,7 @@ router.post('/', (req, res) => {
 router.put('/:id', (req, res) => {
   const { id } = req.params;
   const body = req.body;
-  res.json({
+  res.status(200).json({
     message: 'update',
     data: body,
     id,
@@ -54,7 +56,7 @@ router.put('/:id', (req, res) => {
 router.patch('/:id', (req, res) => {
   const { id } = req.params;
   const body = req.body;
-  res.json({
+  res.status(200).json({
     message: 'update partial',
     data: body,
     id,
@@ -64,7 +66,7 @@ router.patch('/:id', (req, res) => {
 //DELETE
 router.delete('/:id', (req, res) => {
   const { id } = req.params;
-  res.json({
+  res.status(200).json({
     message: 'delete',
     id,
   });
