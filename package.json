@@ -19,5 +19,8 @@
   },
   "devDependencies": {
     "faker": "^5.5.3"
+  },
+  "engines": {
+    "node": "16.x"
   }
 }
